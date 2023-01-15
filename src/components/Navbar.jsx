@@ -61,7 +61,7 @@ const Language = styled.div`
 
 const SearchContainer = styled.div`
   width: 55%;
-  height: 25px;
+  height: 1.5rem;
   background-color: white;
   display: flex;
   justify-content: space-between;
@@ -72,7 +72,7 @@ const SearchContainer = styled.div`
 const Input = styled.input`
   border: none;
   flex: 8;
-  height: 24px;
+  height: 1.375rem;
   padding-left: 0.5rem;
 `;
 
