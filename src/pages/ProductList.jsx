@@ -5,6 +5,7 @@ import Announcement from '../components/Announcement';
 import Products from '../components/Products';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
+import { mobile } from '../responsive';
 
 const ProductList = () => {
   return (
@@ -62,17 +63,20 @@ const FilterContainer = styled.div`
 `;
 const Filter = styled.div`
   margin: 1.25rem;
+  ${mobile({ width: '0rem 1.25rem', display: 'flex', flexDirection: 'column' })}
 `;
 
 const FilterText = styled.span`
   font-size: 1.25rem;
   font-weight: 600;
   margin-right: 0.5rem;
+  ${mobile({ marginRight: '0rem' })}
 `;
 
 const Select = styled.select`
   padding: 0.625rem;
   margin-right: 0.5rem;
+  ${mobile({ margin: '.625rem 0rem' })}
 `;
 const Option = styled.option``;
 

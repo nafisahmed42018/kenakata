@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Announcement from '../components/Announcement';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import { mobile } from '../responsive';
 
 const Product = () => {
   return (
@@ -62,6 +63,8 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 3.125rem;
   display: flex;
+  ${mobile({ padding: ".625rem", flexDirection: "column" })}
+
 `;
 
 const ImageContainer = styled.div`
@@ -72,11 +75,15 @@ const Image = styled.img`
   width: 100%;
   height: 60vh;
   object-fit: cover;
+  ${mobile({ height: "50vh" })}
+
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0rem 3.125rem;
+  ${mobile({ padding: ".625rem" })}
+
 `;
 
 const Title = styled.h1`
@@ -96,6 +103,8 @@ const FilterContainer = styled.div`
   width: 60%;
   display: flex;
   justify-content: space-between;
+  ${mobile({ width: "100%" })}
+
 `;
 
 const Filter = styled.div`
@@ -127,6 +136,8 @@ const AddContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  ${mobile({ width: "100%" })}
+
 `;
 const AmountContainer = styled.div`
   display: flex;

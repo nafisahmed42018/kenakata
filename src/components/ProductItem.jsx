@@ -44,7 +44,7 @@ const Info = styled.div`
 const Container = styled.div`
   flex: 1;
   margin: 0.3125rem;
-  min-width: 280px;
+  min-width: 17.5rem;
   height: 350px;
   display: flex;
   align-items: center;
