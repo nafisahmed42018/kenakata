@@ -1,45 +1,54 @@
 import { Add, Remove } from '@mui/icons-material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Announcement from '../components/Announcement';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import { mobile } from '../responsive';
+import { publicReq } from '../requestMethods';
 
 const Product = () => {
+  //Info about single product
+  const path = useLocation();
+  const id = path.pathname.split('/')[2];
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicReq.get(`products/find/_${id}`);
+        setProduct(res.data);
+      } catch (err) {}
+    };
+    getProduct();
+  }, [id]);
   return (
     <Container>
       <Navbar />
       <Announcement />
       <Wrapper>
         <ImageContainer>
-          <Image src='https://www.pngall.com/wp-content/uploads/4/Black-Leather-Jacket-Transparent.png' />
+          <Image src={product.img} />
         </ImageContainer>
         <InfoContainer>
-          <Title>Leather Jacket</Title>
-          <Description>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem
-            facere, nulla fugit, reiciendis perspiciatis sequi iusto ab facilis
-            ducimus quaerat doloribus cumque possimus maiores aut recusandae.
-            Iure perferendis explicabo dolores.
-          </Description>
+          <Title>{product.title}</Title>
+          <Description>{product.description}</Description>
           <Price>৳ 6000 /-</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              <FilterColor color='#2e1503' />
-              <FilterColor color='#795c34' />
-              <FilterColor color='#000000' />
+              {product.color.map(c => (
+                <FilterColor color={c} key={c} />
+              ))}
             </Filter>
 
             <Filter>
               <FilterTitle>Size</FilterTitle>
               <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
+                {product.size.map(s => (
+                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
@@ -63,8 +72,7 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 3.125rem;
   display: flex;
-  ${mobile({ padding: ".625rem", flexDirection: "column" })}
-
+  ${mobile({ padding: '.625rem', flexDirection: 'column' })}
 `;
 
 const ImageContainer = styled.div`
@@ -75,15 +83,13 @@ const Image = styled.img`
   width: 100%;
   height: 60vh;
   object-fit: cover;
-  ${mobile({ height: "50vh" })}
-
+  ${mobile({ height: '50vh' })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0rem 3.125rem;
-  ${mobile({ padding: ".625rem" })}
-
+  ${mobile({ padding: '.625rem' })}
 `;
 
 const Title = styled.h1`
@@ -103,8 +109,7 @@ const FilterContainer = styled.div`
   width: 60%;
   display: flex;
   justify-content: space-between;
-  ${mobile({ width: "100%" })}
-
+  ${mobile({ width: '100%' })}
 `;
 
 const Filter = styled.div`
@@ -136,8 +141,7 @@ const AddContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ width: "100%" })}
-
+  ${mobile({ width: '100%' })}
 `;
 const AmountContainer = styled.div`
   display: flex;

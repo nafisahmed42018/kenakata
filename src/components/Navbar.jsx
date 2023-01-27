@@ -20,11 +20,7 @@ const Navbar = () => {
               style={{
                 color: 'gray',
                 fontSize: 16,
-                // color: 'gray',
-                // fontSize: '1.25rem',
-                // cursor: 'pointer',
-                // flex: 2,
-                // paddingLeft: '.125rem',
+                cursor: 'pointer',
               }}
             />
           </SearchContainer>
@@ -66,13 +62,6 @@ const Language = styled.div`
 `;
 
 const SearchContainer = styled.div`
-  /* width: 55%;
-  height: 1.5rem;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 0.5px solid lightgray; */
   border: 0.5px solid lightgray;
   display: flex;
   align-items: center;
@@ -81,11 +70,6 @@ const SearchContainer = styled.div`
 `;
 
 const Input = styled.input`
-  /* border: none;
-  flex: 8;
-  height: 1.375rem;
-  padding-left: 0.5rem;
-  ${mobile({ width: '50px' })} */
   border: none;
   outline: none;
   ${mobile({ width: '50px' })}

@@ -4,9 +4,11 @@ import {
   ShoppingCartOutlined,
 } from '@mui/icons-material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ProductItem = ({ item }) => {
+  // Individual Product item container for the products
   return (
     <Container>
       <Circle />
@@ -16,7 +18,12 @@ const ProductItem = ({ item }) => {
           <ShoppingCartOutlined />
         </Icon>
         <Icon>
-          <SearchOutlined />
+          <Link
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+            to={`/products/${item._id}`}
+          >
+            <SearchOutlined />
+          </Link>
         </Icon>
         <Icon>
           <FavoriteBorderOutlined />

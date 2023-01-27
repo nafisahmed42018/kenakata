@@ -7,26 +7,43 @@ import Login from './pages/Login';
 
 //Test for stripe
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Pay from './test/Pay';
+
 // import Success from './test/Success';
 
 const App = () => {
   // return <Cart />;
   //Test for stripe
+  const user = true;
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/product' element={<Product />} />
-        <Route path='/productList' element={<ProductList />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/Pay' element={<Pay />} />
-      </Routes>
-    </BrowserRouter>
+    <Switch>
+      <Route exact path='/'>
+        <Home />
+      </Route>
+      <Route path='/products/:category'>
+        <ProductList />
+      </Route>
+      <Route path='/product/:id'>
+        <Product />
+      </Route>
+      <Route path='/cart'>
+        <Cart />
+      </Route>
+      <Route path='/login'>{user ? <Redirect to='/' /> : <Login />}</Route>
+      <Route path='/register'>
+        {user ? <Redirect to='/login' /> : <Register />}
+      </Route>
+      {/* <Route path='/register'>
+        <Register />
+      </Route> */}
+      {/* <Route path='/login'>
+        <Login />
+      </Route> */}
+      <Route path='/pay'>
+        <Pay />
+      </Route>
+    </Switch>
   );
 };
 
